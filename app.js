@@ -21,8 +21,8 @@ app.post('/check', function (req, res) {
     var code = req.body.code;
     var index = codes.indexOf(code);
     if (index > -1){
-        codes.splice(index, 1);
-        used.push(code);
+        //codes.splice(index, 1);
+        //used.push(code);
         res.json({message: 'valid'});
     }
     else if (used.indexOf(code) > -1){
