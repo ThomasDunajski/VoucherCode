@@ -1,0 +1,11 @@
+{
+  "name": "voucher-codes",
+  "version": "1.0.0",
+  "description": "simple server that generates 100 codes and invalidates them on request",
+  "author": "thomas dunajski <thomas.dunajski@gfnork.de>",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
+    "express": "^4.14.1"
+  }
+}
