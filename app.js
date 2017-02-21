@@ -9,20 +9,24 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //generate codes
-for (i = 0; i < 100; i++){
+for (i = 0; i < 100000; i++){
     codes.push(generateCode());
 }
 
-app.get('/', function (req, res) {
+app.get('/valid', function (req, res) {
     res.send(codes);
+});
+
+app.get('/used', function (req, res) {
+    res.send(used);
 });
 
 app.post('/check', function (req, res) {
     var code = req.body.code;
     var index = codes.indexOf(code);
     if (index > -1){
-        //codes.splice(index, 1);
-        //used.push(code);
+        codes.splice(index, 1);
+        used.push(code);
         res.json({message: 'valid'});
     }
     else if (used.indexOf(code) > -1){
@@ -33,7 +37,7 @@ app.post('/check', function (req, res) {
 
 function generateCode()
 {
-    return Math.random().toString(36).substring(2, 9);
+    return Math.random().toString(36).substring(2, 7);
 }
 
 //start server
