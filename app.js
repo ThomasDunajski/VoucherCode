@@ -23,12 +23,12 @@ app.post('/check', function (req, res) {
     if (index > -1){
         codes.splice(index, 1);
         used.push(code);
-        res.send('valid');
+        res.json({message: 'valid'});
     }
     else if (used.indexOf(code) > -1){
-        res.send('already used');
+        res.json({message: 'already used'});
     }
-    res.send('invalid');
+    res.json({message: 'invalid'});
 });
 
 function generateCode()
