@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //generate codes
-for (i = 0; i < 100000; i++){
+for (var i = 0; i < 100000; i++){
     codes.push(generateCode());
 }
 
@@ -41,7 +41,9 @@ function generateCode()
 }
 
 //start server
-app.listen(3000, function () {
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+app.listen(server_port, server_ip_address, function () {
     codes.forEach(function(code) {
         console.log(code);
     });
