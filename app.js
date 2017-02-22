@@ -3,8 +3,10 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var codes = [];
 var used = [];
+var morgan = require('morgan')
 var app = express();
 
+app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -42,9 +44,11 @@ function generateCode()
 
 //start server
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 app.listen(server_port, server_ip_address, function () {
-    codes.forEach(function(code) {
-        console.log(code);
-    });
+    console.log("Listening on " + server_ip_address + ", server_port " + server_port)
+
+    //codes.forEach(function(code) {
+    //    console.log(code);
+    //});
 });
